@@ -690,7 +690,7 @@ public class CalendarPickerView extends ListView implements NestedScrollingChild
         return date;
     }
 
-    private boolean doSelectDate(Date date, MonthCellDescriptor cell) {
+    public boolean doSelectDate(Date date, MonthCellDescriptor cell) {
         Calendar newlySelectedCal = Calendar.getInstance(timeZone, locale);
         newlySelectedCal.setTime(date);
         // Sanitize input: clear out the hours/minutes/seconds/millis.
