@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Date;
+
 import static android.view.View.MeasureSpec.AT_MOST;
 import static android.view.View.MeasureSpec.EXACTLY;
 import static android.view.View.MeasureSpec.makeMeasureSpec;
@@ -56,7 +58,7 @@ public class CalendarRowView extends ViewGroup implements View.OnClickListener {
                     } else {
                         rowHeight = cellSize;
                     }
-                } else  {
+                } else {
                     rowHeight = child.getMeasuredHeight();
                 }
             }
@@ -133,6 +135,12 @@ public class CalendarRowView extends ViewGroup implements View.OnClickListener {
         }
     }
 
+    public void performClickMain(View view) {
+        if (listener != null) {
+            listener.handleClick((MonthCellDescriptor) view.getTag());
+
+        }
+    }
     public void setTypeface(Typeface typeface) {
         for (int i = 0; i < getChildCount(); i++) {
             if (getChildAt(i) instanceof CalendarCellView) {
@@ -142,4 +150,6 @@ public class CalendarRowView extends ViewGroup implements View.OnClickListener {
             }
         }
     }
+
+
 }
