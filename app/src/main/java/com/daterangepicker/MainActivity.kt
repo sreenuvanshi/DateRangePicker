@@ -18,10 +18,14 @@ class MainActivity : AppCompatActivity() {
         val calendar: CalendarPickerView = findViewById(R.id.calendar_view)
         val nextYear = Calendar.getInstance()
         nextYear.add(Calendar.YEAR, 1)
-        val today = Date()
-        calendar.init(today, nextYear.time)
-            .withSelectedDate(today)
-        calendar.init(today, nextYear.time)
+       // val today = Date()
+        val spf =
+            SimpleDateFormat("MMM dd, hh:mm:ss aaa yyyy")
+        val fromDate: Date = spf.parse("Apr 14, 6:30:00 PM 2020")
+
+        calendar.init(fromDate, nextYear.time)
+            .withSelectedDate(fromDate)
+        calendar.init(fromDate, nextYear.time)
             .inMode(RANGE)
         val face = Typeface.createFromAsset(
             assets,
@@ -29,13 +33,6 @@ class MainActivity : AppCompatActivity() {
         )
         calendar.setTitleTypeface(face)
         calendar.setTypeface(face)
-
-
-        val spf =
-            SimpleDateFormat("MMM dd, hh:mm:ss aaa yyyy")
-        val fromDate: Date = spf.parse("Apr 20, 6:30:00 PM 2020")
-        var toDate: Date = spf.parse("Apr 20, 6:30:00 PM 2020")
-
 
         calendar.setOnDateSelectedListener(object : CalendarPickerView.OnDateSelectedListener {
             override fun onDateSelected(date: Date?) {
@@ -51,7 +48,10 @@ class MainActivity : AppCompatActivity() {
 
         })
         val monthCellWithMonthIndex = calendar.getMonthCellWithIndexByDate(fromDate)
-        calendar.handleClick(monthCellWithMonthIndex?.cell)
+        if (monthCellWithMonthIndex != null) {
+            calendar.handleClick(monthCellWithMonthIndex?.cell)
+        }
+
 
     }
 }

@@ -883,6 +883,7 @@ public class CalendarPickerView extends ListView implements NestedScrollingChild
                 actCal.setTime(actCell.getDate());
                 if (sameDate(actCal, searchCal) && actCell.isSelectable()) {
                     return new MonthCellWithMonthIndex(actCell, index);
+
                 }
             }
         }
